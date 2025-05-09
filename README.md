@@ -1,58 +1,68 @@
-# TestID Inspector
 
-**TestID Inspector** is a lightweight bookmarklet that helps testers and developers quickly locate, highlight, and copy `data-testid` attributes on any web page. By centralizing test-hook management, it reduces brittle selectors, enhances collaboration between QA and developers, and streamlines end-to-end test maintenance.
+# 🔍 TestID Inspector Bookmarklet
 
----
-
-## ✨ Benefits of Using `data-testid` Attributes
-
-* **Improved Test Reliability** : Prevents fragile selectors by relying on stable hooks.
-* **Clarity & Readability** : IDs like `login-button` make test code more intuitive.
-* **Decoupled from Presentation** : Styling changes don't break tests.
-* **Performance** : Faster and more targeted DOM querying.
-* **Team Collaboration** : Developers and QA agree on consistent, descriptive IDs.
-* **Selective Usage** : Keeps the DOM clean while offering testability where needed.
+A lightweight, draggable bookmarklet that highlights all `data-testid` attributes on any webpage, outlines the elements, and allows easy copying of IDs for test automation use.
 
 ---
 
-## 🛠 Installation
+## 🚀 Why use `data-testid` attributes?
 
-1. **Clone the repo** :
-
-```bash
-   git clone https://github.com/your-org/testid-inspector.git
-```
-
-1. The repo includes a minified `bookmarklet.js` file ready for use.
+* 🎯  **Precision** : Makes UI element selection stable and decoupled from styling or layout changes.
+* 🧪  **Testing-Friendly** : Ideal for use with tools like Cypress, Playwright, Selenium, etc.
+* 🔍  **Debuggable** : Easily inspect elements intended for automation.
 
 ---
 
-## 🎯 Usage
+## 🧰 Features
 
-* Open any web page to inspect.
-* **Drag the button below to your bookmarks bar** .
-* Click the bookmark to open the **TestID Inspector** control bar.
-* Use controls to:
-  * Highlight all `data-testid` elements
-  * Copy individual or all IDs
-  * Validate custom selectors
-  * Customize outline color/style
-  * Remove highlights
+* ✅ Highlight all elements with `data-testid` attributes.
+* ✅ Inline labels and copy-on-click.
+* ✅ Bulk copy all `data-testid`s.
+* ✅ Pick custom highlight styles/colors.
+* ✅ CSS selector validator.
+* ✅ Minimal UI, toggleable help.
 
 ---
 
-## 🔖 Drag-and-Drop Bookmarklet Button
+## 📦 Installation
 
-> **Drag the button to your bookmarks bar:**
+1. Visit the [TestID Inspector Bookmarklet Page](https://gaurangpb.github.io/testid-inspector/).
+2. **Drag the "TestID Inspector" button to your bookmarks bar.**
 
-```html
-<a href="javascript:(function(){const barId="data-testid-control-bar",old=document.getElementById(barId);if(old)old.remove();const styleEl=document.createElement("style");styleEl.textContent=`#${barId}{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,0.95);color:#333;padding:12px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,0.2);z-index:10000;display:flex;align-items:center;gap:8px;font-family:sans-serif;flex-wrap:wrap}#${barId} .help-panel{position:absolute;top:100%;left:0;background:#fff;color:#333;padding:8px;border:1px solid #ccc;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.2);font-size:.8rem;white-space:normal;max-width:300px;display:none;z-index:10001}#${barId} button,#${barId} select{background:#007bff;border:none;color:#fff;padding:6px 10px;border-radius:4px;cursor:pointer;font-size:.8rem;transition:background .2s}#${barId} button:hover,#${barId} select:hover{background:#0056b3}#${barId} input{flex:1;padding:6px 8px;border:1px solid #ccc;border-radius:4px;font-size:.8rem}#${barId} .message{margin-left:auto;font-size:.8rem}#${barId} a{color:#007bff;text-decoration:none;font-size:1rem}.testid-label{position:absolute;top:-1.2em;left:0;background:rgba(255,255,0,0.7);color:#000;padding:2px 4px;font-size:10px;border-radius:4px;cursor:pointer;z-index:10000}%60;document.head.appendChild(styleEl);const bar=document.createElement("div");bar.id=barId;let cfg={color:"SlateBlue",style:"dashed"};function show(msg,err){msgEl.style.color=err?"Tomato":"DodgerBlue";msgEl.textContent=msg;setTimeout(()=>msgEl.textContent="",5e3);}function clearAll(){document.querySelectorAll(".testid-label").forEach(l=>l.remove());document.querySelectorAll("[data-testid]").forEach(el=>el.style.outline="");}function addLabels(els){els.forEach(el=>{const id=el.getAttribute("data-testid");if(!id)return;const pos=getComputedStyle(el).position;if(pos==="static")el.style.position="relative";const lbl=document.createElement("span");lbl.className="testid-label";lbl.textContent=id;lbl.onclick=()=>{navigator.clipboard.writeText(id);show(%60Copied: ${id}%60)};el.appendChild(lbl);});}const helpBtn=document.createElement("button");helpBtn.textContent="❔";const helpPanel=document.createElement("div");helpPanel.className="help-panel";helpPanel.innerHTML=%60• Click <b>Highlight</b> to outline all data-testid elements<br>• Click labels to copy individual IDs<br>• Use <b>Copy IDs</b> for bulk copy<br>• Pick colors/styles via selectors<br>• Use <b>Validate</b> to highlight custom selector<br>• Click <b>Remove</b> to clear%60;helpBtn.onclick=()=>{helpPanel.style.display=helpPanel.style.display==="block"?"none":"block"};const btnH=document.createElement("button");btnH.textContent="Highlight";btnH.onclick=()=>{clearAll();const els=document.querySelectorAll("[data-testid]");if(!els.length)return show("No elements found",1);els.forEach(el=>el.style.outline=%602px ${cfg.style} ${cfg.color}%60);addLabels(els);show(%60${els.length} highlighted%60)};const btnC=document.createElement("button");btnC.textContent="Copy IDs";btnC.onclick=()=>{const ids=[...document.querySelectorAll("[data-testid]")].map(e=>e.getAttribute("data-testid"));if(!ids.length)return show("No IDs to copy",1);navigator.clipboard.writeText(ids.join("\n"));show("Copied to clipboard")};const btnR=document.createElement("button");btnR.textContent="Remove";btnR.onclick=()=>{clearAll();show("Highlights removed");};const sep1=document.createElement("span");sep1.textContent="|";sep1.style.margin="0 6px";const selC=document.createElement("select");["SlateBlue","Tomato","LimeGreen","Orange"].forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;o.style.color=c;selC.append(o)});selC.onchange=()=>cfg.color=selC.value;const selS=document.createElement("select");["dashed","solid","dotted","double"].forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;selS.append(o)});selS.onchange=()=>cfg.style=selS.value;const sep2=document.createElement("span");sep2.textContent="|";sep2.style.margin="0 6px";const inp=document.createElement("input");inp.type="text";inp.placeholder="CSS selector";const btnV=document.createElement("button");btnV.textContent="Validate";btnV.onclick=()=>{clearAll();const s=inp.value.trim();if(!s)return show("Enter selector",1);let n;try{n=document.querySelectorAll(s)}catch{return show("Invalid selector",1)}if(!n.length)return show("No match",1);n.forEach(el=>el.style.outline=%602px ${cfg.style} ${cfg.color}%60);addLabels(n);show(%60${n.length} highlighted%60)};const btnX=document.createElement("button");btnX.textContent="Close";btnX.onclick=()=>bar.remove();const infoLink=document.createElement("a");infoLink.textContent="ℹ%EF%B8%8F";infoLink.href="https://github.com/gaurangpb/";infoLink.target="_blank";const msgEl=document.createElement("div");msgEl.className="message";bar.append(helpBtn,helpPanel,btnH,btnC,btnR,sep1,selC,selS,sep2,inp,btnV,btnX,infoLink,msgEl);document.body.appendChild(bar)})();" draggable="true">Add TestID Inspector</a>
-```
+> 💡 Tip: If dragging doesn't work, right-click the button and choose  **"Bookmark this link"** .
 
-> Or right-click and "Copy link address" if dragging is unsupported.
+---
+
+## 🛠️ Usage
+
+* Click the bookmarklet from your bookmarks bar while on any web page.
+* Use the toolbar that appears:
+  * 🔦 `Highlight` — outlines and labels all elements with `data-testid`.
+  * 📋 `Copy IDs` — copies all found IDs to clipboard.
+  * ❌ `Remove` — clears highlights and labels.
+  * 🎨 Choose border color and style.
+  * 🔍 Use a CSS selector to validate and inspect any element.
+
+---
+
+## 👨‍💻 Dev Info
+
+* Minified JS lives in [`bookmarklet.min.js`](https://chatgpt.com/c/bookmarklet.js)
+* Bookmarklet loader UI in [`index.html`](https://chatgpt.com/c/index.html)
+* Hosted via [GitHub Pages](https://yourusername.github.io/testid-inspector/)
+
+---
+
+## 🙌 Contributing
+
+Feel free to fork and PR with suggestions or improvements. Let's help the testing community build faster!
 
 ---
 
 ## 📜 License
 
-This project is licensed under the MIT License. Contributions are welcome!
+MIT License
+
+---
+
+Created by [@](https://github.com/yourusername)gaurangpb

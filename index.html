@@ -1,49 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TestID Inspector Bookmarklet</title>
   <style>
     body {
       font-family: sans-serif;
-      text-align: center;
-      padding-top: 60px;
-      background: #f9f9f9;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
     }
-    .btn {
+    a.bookmarklet {
       display: inline-block;
+      padding: 10px 16px;
       background: #007bff;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 8px;
+      color: white;
       text-decoration: none;
-      font-size: 16px;
-      margin-top: 20px;
-      cursor: grab;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 1rem;
     }
-    .btn:hover {
+    a.bookmarklet:hover {
       background: #0056b3;
     }
     code {
-      background: #eee;
+      background: #f2f2f2;
       padding: 2px 4px;
       border-radius: 4px;
     }
   </style>
 </head>
 <body>
-  <h1>🔍 TestID Inspector</h1>
-  <p>Drag the button below to your bookmarks bar:</p>
+  <h1>🔍 TestID Inspector Bookmarklet</h1>
+  <p>
+    Drag the button below to your bookmarks bar to enable test-friendly inspection of elements with
+    <code>data-testid</code> attributes:
+  </p>
 
-  <a class="btn" href="javascript:(function(){/* PASTE MINIFIED CODE HERE */})();">
-    TestID Inspector
+  <a class="bookmarklet" href="javascript:(function(){var s=document.createElement('script');s.src='https://gaurangpb.github.io/testid-inspector/datatestid.min.js';document.body.appendChild(s);})();">
+    🔍 TestID Inspector
   </a>
 
-  <p style="margin-top: 20px;">
-    Having trouble? Right-click the button above and choose <code>Bookmark this link</code>.
-  </p>
+  <h2>📦 How to Use</h2>
+  <ol>
+    <li>Visit any web page where you want to inspect <code>data-testid</code> attributes.</li>
+    <li>Click the <strong>TestID Inspector</strong> bookmarklet in your bookmarks bar.</li>
+    <li>The floating toolbar lets you highlight, copy, validate, and more.</li>
+  </ol>
+
   <p>
-    <a href="https://github.com/gaurangpb/testid-inspector" target="_blank">View on GitHub</a>
+    View the source code on <a href="https://github.com/gaurangpb/testid-inspector" target="_blank">GitHub</a>.
   </p>
 </body>
 </html>
