@@ -30,8 +30,11 @@ A lightweight, draggable bookmarklet that highlights all `data-testid` attribute
 
 > 💡 Tip: If dragging doesn't work, right-click the button and choose  **"Bookmark this link"** .
 
----
 
+> 🧪 **Try it out:**
+> Use this [sample page with data-testid attributes](https://client.schwab.com/public/app/sip/enrollment) to test the bookmarklet’s features.
+
+---
 ## 🛠️ Usage
 
 * Click the bookmarklet from your bookmarks bar while on any web page.
