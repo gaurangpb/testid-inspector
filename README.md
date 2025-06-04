@@ -1,4 +1,3 @@
-
 # 🔍 TestID Inspector Bookmarklet
 
 A lightweight, draggable bookmarklet that highlights all `data-testid` attributes on any webpage, outlines the elements, and allows easy copying of IDs for test automation use.
@@ -42,14 +41,6 @@ A lightweight, draggable bookmarklet that highlights all `data-testid` attribute
   * ❌ `Remove` — clears highlights and labels.
   * 🎨 Choose border color and style.
   * 🔍 Use a CSS selector to validate and inspect any element.
-
----
-
-## 👨‍💻 Dev Info
-
-* Minified JS lives in [`bookmarklet.min.js`](https://chatgpt.com/c/bookmarklet.js)
-* Bookmarklet loader UI in [`index.html`](https://chatgpt.com/c/index.html)
-* Hosted via [GitHub Pages](https://yourusername.github.io/testid-inspector/)
 
 ---
 
